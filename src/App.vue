@@ -23,7 +23,7 @@ body {
   background-color: #2979ff;
 }
 .main {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 .mainCanvas {
   max-width: 128px;
@@ -76,6 +76,10 @@ p.label-name.first {
 }
 .loading {
   text-align: center;
+}
+#sns-share {
+  text-align: center;
+  margin-top: 0;
 }
 #footer {
   text-align: center;

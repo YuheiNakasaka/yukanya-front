@@ -8,9 +8,19 @@
     ></canvas>
     <div class="detail" v-if="isLoading === false">
       <div class="labels">
+        <h4>診断結果</h4>
+        <p>
+          あなたは「<span class="top-match">{{ topMatchMember }}</span
+          >」顔です
+        </p>
         <div v-for="(pred, index) in predictions" :key="index">
-          <p class="label-name" :class="index === 0 ? 'first' : ''">
-            {{ pred[0] }}: {{ pred[1] }}%
+          <p
+            class="label-name"
+            :style="'background-color:' + colorTable(pred[0])"
+            :class="index === 0 ? 'first' : ''"
+          >
+            <span class="label-name-text">{{ pred[0] }}</span
+            >: <span>{{ pred[1] }}%</span>
           </p>
         </div>
       </div>
@@ -32,6 +42,7 @@ export default {
   data: function() {
     return {
       predictions: [],
+      topMatchMember: "",
       isLoading: this.loading
     };
   },
@@ -44,6 +55,18 @@ export default {
     this.renderCanvas();
   },
   methods: {
+    colorTable: function(name) {
+      const c = {
+        宮崎由加: "rgb(246,194,203)",
+        金澤朋子: "rgb(203,50,35)",
+        高木紗友希: "rgb(255,253,84)",
+        宮本佳林: "rgb(133,80,194)",
+        植村あかり: "rgb(161,250,78)",
+        段原瑠々: "rgb(243,168,59)",
+        稲場愛香: "rgb(210,47,125)"
+      };
+      return c[name];
+    },
     downloadCanvasImage: function() {
       const canvas = document.querySelector(".mainCanvas");
       const link = document.createElement("a");
@@ -130,13 +153,14 @@ export default {
           const results = [];
           const data = res.body.data;
           for (let i = 0; i < data.length; i++) {
+            if (i === data.length - 1) vm.topMatchMember = data[i][1];
             results.push([data[i][1], parseFloat(data[i][0]).toFixed(2)]);
           }
           vm.predictions = results.sort((a, b) => {
             return b[1] - a[1];
           });
+          vm.isLoading = false;
         });
-      vm.isLoading = false;
     }
   }
 };
@@ -157,5 +181,20 @@ li {
 }
 a {
   color: #42b983;
+}
+.labels {
+  h4 {
+    margin: 10px 0 0 0;
+    color: #333;
+  }
+  .top-match {
+    font-weight: bold;
+  }
+}
+.label-name {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+  color: #333;
 }
 </style>

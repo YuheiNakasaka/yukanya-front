@@ -4,21 +4,11 @@
       <div class="top">
         <h1>Juice=Juice顔診断</h1>
         <p>
-          Juice=Juiceの中で誰に似ているかを診断できます。※クソ雑魚サーバーなのですぐ死にます
+          Juice=Juiceの中で誰に似ているかを診断できます。
         </p>
       </div>
       <div class="main">
         <div class="canvases">
-          <div class="meta" v-if="loading === false">
-            <label for="input-file" class="input-file-label">
-              <i class="material-icons">cloud_upload</i
-              ><span>ファイルをアップロードしてください</span>
-              <p>
-                (注)画像は診断のためだけに使われます。どこにも保存せず破棄します。
-              </p>
-              <input type="file" @change="onFileChange" id="input-file" />
-            </label>
-          </div>
           <div
             class="canvas-container"
             v-for="(detection, index) in detections"
@@ -30,11 +20,30 @@
               :imgurl="imgUrl"
             ></Prediction>
           </div>
+          <br />
+          <div class="meta" v-if="loading === false">
+            <label for="input-file" class="input-file-label">
+              <i class="material-icons">cloud_upload</i
+              ><span>ファイルをアップロードしてください</span>
+              <p>
+                (注)画像は診断のためだけに使われます。どこにも保存せず破棄します。
+              </p>
+              <input type="file" @change="onFileChange" id="input-file" />
+            </label>
+          </div>
         </div>
         <div class="loading" v-if="loading === true">
           <p>読み込み中...</p>
         </div>
       </div>
+    </div>
+    <div id="sns-share">
+      <a
+        href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=juicejuice"
+        class="twitter-share-button"
+        data-show-count="false"
+        >Tweet</a
+      >
     </div>
     <div id="footer">
       <a href="https://twitter.com/razokulover" target="_blank"
@@ -147,3 +156,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.meta {
+  margin-bottom: 30px;
+}
+.twitter-share-button {
+  display: inline-block;
+}
+</style>
