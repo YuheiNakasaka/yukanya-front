@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="loading" v-if="loading === true">
-          <p>読み込み中...</p>
+          <p>診断中です。15秒ほどお待ちください...</p>
         </div>
       </div>
     </div>
