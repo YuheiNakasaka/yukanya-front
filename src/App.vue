@@ -16,7 +16,7 @@ export default {
         subDir = "/yukanya-front";
       }
       navigator.serviceWorker
-        .register(`${subDir}/jjws.js`, { scope: `/${scope}` })
+        .register(`${subDir}/jjws.js`, { scope: `/${scope}/` })
         .catch(() => {});
     }
   }
