@@ -19,8 +19,8 @@ body {
   box-sizing: border-box;
   width: 100%;
   padding: 2px 20px;
-  color: #fff8e1;
-  background-color: #2979ff;
+  color: #ffffff;
+  background-color: #fc8608;
 }
 .main {
   margin-top: 5px;
@@ -43,11 +43,11 @@ body {
 .input-file-label {
   font-size: 1.25em;
   font-weight: 700;
-  color: #fff8e1;
-  background-color: #2979ff;
+  color: #ffffff;
+  background-color: #fc8608;
   display: inline-block;
   padding: 16px 30px;
-  border-bottom: solid 4px #627295;
+  border-bottom: solid 4px #ed810d;
   border-radius: 3px;
   cursor: pointer;
 }
