@@ -197,5 +197,8 @@ a {
   margin: 5px;
   padding: 5px;
   color: #333;
+  .label-name-text {
+    font-weight: bold;
+  }
 }
 </style>

@@ -37,10 +37,14 @@
           <p>診断中です。15秒ほどお待ちください...</p>
         </div>
       </div>
+      <div class="example">
+        <div class="example-title">診断例</div>
+        <img src="screenshot-composed.jpg" />
+      </div>
     </div>
     <div id="sns-share">
       <a
-        href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=juicejuice"
+        href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=juicejuice,jjshindan"
         class="twitter-share-button"
         data-show-count="false"
         >Tweet</a
@@ -169,5 +173,21 @@ export default {
 }
 .twitter-share-button {
   display: inline-block;
+}
+.loading {
+  p {
+    font-weight: bold;
+  }
+}
+.example {
+  text-align: center;
+  .example-title {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  img {
+    max-width: 500px;
+  }
 }
 </style>
