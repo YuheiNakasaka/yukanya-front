@@ -4,6 +4,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  created: function() {
+    if (navigator.serviceWorker) {
+      let scope = "";
+      if (process.env.NODE_ENV === "production") {
+        scope = "juicejuice-shindan";
+      }
+      navigator.serviceWorker
+        .register("/jjws.js", { scope: `/${scope}` })
+        .catch(() => {});
+    }
+  }
+};
+</script>
+
 <style lang="scss">
 body {
   margin: 0;

@@ -160,6 +160,7 @@ export default {
             return b[1] - a[1];
           });
           vm.isLoading = false;
+          vm.$emit('set-loading', false);
         });
     }
   }

@@ -18,6 +18,7 @@
               :loading="loading"
               :detection="detection"
               :imgurl="imgUrl"
+              @set-loading="setLoading"
             ></Prediction>
           </div>
           <br />
@@ -83,6 +84,9 @@ export default {
     });
   },
   methods: {
+    setLoading: function(status) {
+      this.loading = status;
+    },
     onFileChange: function(e) {
       if (e.target) this.fileReader(e.target.files);
     },
@@ -142,8 +146,10 @@ export default {
           ctx.drawImage(img, 0, 0, img.width, img.height);
           const detections = await vm.faceDetect(canvas);
           vm.detections = detections;
-          if (detections.length === 0) alert("顔が検出できませんでした");
-          vm.loading = false;
+          if (detections.length === 0) {
+            vm.loading = false;
+            alert("顔が検出できませんでした");
+          }
         });
       };
     },
