@@ -43,6 +43,7 @@ self.addEventListener("activate", event => {
 // キャッシュ無 -> サーバーにリクエストし、そのレスポンスをキャッシュする
 self.addEventListener("fetch", event => {
   let requestUrl = event.request.url;
+  console.log(requestUrl);
   if (
     !STATIC_FILE_URL_HASH[requestUrl] &&
     !requestUrl.match(/.png$/) &&
