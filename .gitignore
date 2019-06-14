@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+.node-version
+# 基本yarnでやる
+package-lock.json
