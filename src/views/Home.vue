@@ -190,4 +190,11 @@ export default {
     max-width: 500px;
   }
 }
+@media only screen and (max-width: 767px) {
+  .example {
+    img {
+      max-width: 310px;
+    }
+  }
+}
 </style>
