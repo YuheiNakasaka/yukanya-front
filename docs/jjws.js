@@ -47,7 +47,8 @@ self.addEventListener("fetch", event => {
     !STATIC_FILE_URL_HASH[requestUrl] &&
     !requestUrl.match(/.png$/) &&
     !requestUrl.match(/manifest\.json$/) &&
-    !requestUrl.match(/_model-shard.+/)
+    !requestUrl.match(/_model-shard.+/) &&
+    !requestUrl.match(/screenshot-composed.jpg/)
   )
     return;
 
