@@ -10,11 +10,13 @@ export default {
   created: function() {
     if (navigator.serviceWorker) {
       let scope = "";
+      let subDir = "";
       if (process.env.NODE_ENV === "production") {
-        scope = "juicejuice-shindan";
+        scope = "yukanya-front";
+        subDir = "/yukanya-front";
       }
       navigator.serviceWorker
-        .register("/jjws.js", { scope: `/${scope}` })
+        .register(`${subDir}/jjws.js`, { scope: `/${scope}` })
         .catch(() => {});
     }
   }
