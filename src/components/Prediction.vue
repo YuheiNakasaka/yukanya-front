@@ -167,6 +167,12 @@ export default {
           });
           vm.isLoading = false;
           vm.$emit("set-loading", false);
+        })
+        .catch(() => {
+          vm.judgeMessage = "ごめんなさい、サーバーが死にました...";
+          vm.predictions = [];
+          vm.isLoading = false;
+          vm.$emit("set-loading", false);
         });
     }
   }
