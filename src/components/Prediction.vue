@@ -9,10 +9,7 @@
     <div class="detail" v-if="isLoading === false">
       <div class="labels">
         <h4>診断結果</h4>
-        <p>
-          あなたは「<span class="top-match">{{ topMatchMember }}</span
-          >」顔です
-        </p>
+        <p v-html="judgeMessage"></p>
         <div v-for="(pred, index) in predictions" :key="index">
           <p
             class="label-name"
@@ -20,7 +17,7 @@
             :class="index === 0 ? 'first' : ''"
           >
             <span class="label-name-text">{{ pred[0] }}</span
-            >: <span>{{ pred[1] }}%</span>
+            >: <span>{{ pred[1] }}</span>
           </p>
         </div>
       </div>
@@ -43,6 +40,7 @@ export default {
     return {
       predictions: [],
       topMatchMember: "",
+      judgeMessage: "",
       isLoading: this.loading
     };
   },
@@ -147,20 +145,25 @@ export default {
       const formData = new FormData();
       formData.append("image", b64);
       superagent
-        .post("https://juicejuice-shindan.herokuapp.com/")
+        .post("https://juicejuice-shindan.herokuapp.com/distance")
         .send(formData)
         .then(res => {
           const results = [];
           const data = res.body.data;
+          const members = [];
           for (let i = 0; i < data.length; i++) {
-            if (i === data.length - 1) vm.topMatchMember = data[i][1];
-            results.push([data[i][1], parseFloat(data[i][0]).toFixed(2)]);
+            if (!members.includes(data[i].name)) {
+              members.push(data[i].name);
+              const score = parseFloat((1 - data[i].score) * 100).toFixed(2);
+              results.push([data[i].name, score]);
+            }
           }
+          vm.judgeMessage = res.body.message;
           vm.predictions = results.sort((a, b) => {
             return b[1] - a[1];
           });
           vm.isLoading = false;
-          vm.$emit('set-loading', false);
+          vm.$emit("set-loading", false);
         });
     }
   }
