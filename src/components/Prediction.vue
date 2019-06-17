@@ -143,9 +143,12 @@ export default {
         .toDataURL("image/png")
         .replace(/data:image\/png;base64,/, "");
       const formData = new FormData();
+      let endpoint = "http://localhost:8080/distance";
+      if (process.env.NODE_ENV === "production")
+        endpoint = "https://juicejuice-shindan.herokuapp.com/distance";
       formData.append("image", b64);
       superagent
-        .post("https://juicejuice-shindan.herokuapp.com/distance")
+        .post(endpoint)
         .send(formData)
         .then(res => {
           const results = [];
